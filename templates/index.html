@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Las Delicias de Pipe</title>
+    <!-- Enlaces a Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Estilos adicionales para el home -->
+    <style>
+        body {
+            background-color: #f8f9fa; /* Color de fondo para la página */
+        }
+        .navbar-brand img {
+            max-width: 200px; /* Ajustar el tamaño máximo del logo */
+        }
+        .jumbotron {
+            background-color: #343a40; /* Color de fondo del jumbotron */
+            color: #ffffff; /* Color del texto en el jumbotron */
+            padding: 4rem;
+            border-radius: 0;
+        }
+        .jumbotron h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+        .lead {
+            font-size: 1.5rem;
+            color: #dee2e6;
+        }
+        .jumbotron p {
+            font-size: 1.2rem;
+            color: #dee2e6;
+        }
+        .jumbotron .btn {
+            font-size: 1.2rem;
+            padding: 12px 30px;
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+        .jumbotron .btn:hover {
+            background-color: #138496;
+            border-color: #138496;
+        }
+        .footer {
+            background-color: #343a40; /* Color de fondo del footer */
+            color: #ffffff; /* Color del texto en el footer */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="{{ url_for('static', filename='logo.png') }}" alt="Las Delicias de Pipe">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ url_for('index') }}">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('menu') }}">Menú</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('hacer_pedido') }}">Hacer Pedido</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('reservaciones') }}">Reservaciones</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="container-fluid mt-5">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Bienvenidos a Las Delicias de Pipe</h1>
+            <p class="lead">Disfruta de las mejores comidas rápidas en Cali</p>
+            <hr class="my-4">
+            <p>Horario de atención: jueves a domingo de 5 pm a 2 am</p>
+            <p>Contacto: 3208678103 | Domicilios: 31284999922</p>
+            <p>Ubicación: Cra 42 # 9a-42, Cali</p>
+            <p>¡No te pierdas nuestras promociones semanales!</p>
+            <a class="btn btn-light btn-lg" href="{{ url_for('menu') }}" role="button">Ver Menú</a>
+        </div>
+    </section>
+
+    <footer class="footer mt-auto py-3">
+        <div class="container text-center">
+            <span class="text-muted">Las Delicias de Pipe &copy; 2024</span>
+        </div>
+    </footer>
+
+    <!-- Enlaces a Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js" integrity="sha384-Q6E9RHJX5sYFF+Ej8NyJ3icHiHQKNCu8H+Atf3F/KtsKKgqtpz7S/aCiFk06Z0M" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy2F6BHcFG0eRb5EJHJw8q5f8k0FV5lwwK" crossorigin="anonymous"></script>
+</body>
+</html>

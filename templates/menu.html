@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú - Las Delicias de Pipe</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            padding-top: 4.5rem;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+        }
+        footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .menu-item img {
+            max-height: 150px;
+            margin-right: 15px;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .menu-item .info {
+            flex: 1;
+        }
+        .tabs {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="{{ url_for('static', filename='comida.jfif') }}" alt="Las Delicias de Pipe" style="max-height: 50px;">
+                    Las Delicias de Pipe
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/menu">Menú</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/hacer_pedido">Hacer Pedido</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 class="mt-5">Menú</h1>
+        <ul class="nav nav-tabs tabs" id="menuTabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="entradas-tab" data-toggle="tab" href="#entradas" role="tab" aria-controls="entradas" aria-selected="true">Entradas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="platos-principales-tab" data-toggle="tab" href="#platos-principales" role="tab" aria-controls="platos-principales" aria-selected="false">Platos Principales</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="bebidas-tab" data-toggle="tab" href="#bebidas" role="tab" aria-controls="bebidas" aria-selected="false">Bebidas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="postres-tab" data-toggle="tab" href="#postres" role="tab" aria-controls="postres" aria-selected="false">Postres</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="menuTabContent">
+            <!-- Entradas -->
+            <div class="tab-pane fade show active" id="entradas" role="tabpanel" aria-labelledby="entradas-tab">
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='alitas.jfif') }}" alt="Alitas de Pollo">
+                    <div class="info">
+                        <h5>Alitas de Pollo - $10.000</h5>
+                        <p>Crujientes alitas de pollo servidas con salsa BBQ.</p>
+                        <p>Calorías: 350</p>
+                        <button class="btn btn-primary">Añadir al Pedido</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='nuggets.jfif') }}" alt="Nuggets de Pollo">
+                    <div class="info">
+                        <h5>Nuggets de Pollo - $8.000</h5>
+                        <p>Deliciosos nuggets de pollo acompañados de papas fritas.</p>
+                        <p>Calorías: 400</p>
+                        <button class="btn btn-primary">Añadir al Pedido</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='papas.jfif') }}" alt="Papas Fritas">
+                    <div class="info">
+                        <h5>Papas Fritas - $5.000</h5>
+                        <p>Papas fritas doradas y crujientes, perfectas para acompañar cualquier plato.</p>
+                        <p>Calorías: 250</p>
+                        <button class="btn btn-primary">Añadir al Pedido</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platos Principales -->
+            <div class="tab-pane fade" id="platos-principales" role="tabpanel" aria-labelledby="platos-principales-tab">
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='hamburguesa.jfif') }}" alt="Hamburguesa Clásica">
+                    <div class="info">
+                        <h5>Hamburguesa Clásica - $12.000</h5>
+                        <p>Jugosa hamburguesa con queso, lechuga, tomate y nuestra salsa especial.</p>
+                        <p>Calorías: 600</p>
+                        <button class="btn btn-primary">Añadir al Pedido</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='perro.jfif') }}" alt="Perro Caliente Especial">
+                    <div class="info">
+                        <h5>Perro Caliente Especial - $10.000</h5>
+                        <p>Salchicha de res en pan suave, acompañada de papas fritas y salsas al gusto.</p>
+                        <p>Calorías: 500</p>
+                        <button class="btn btn-primary">Añadir al Pedido</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='pizza.jfif') }}" alt="Pizza Personal">
+                    <div class="info">
+                        <h5>Pizza Personal - $15.000</h5>
+                        <p>Pizza personal con ingredientes frescos y queso fundido.</p>
+                        <p>Calorías: 700</p>
+                        <button class="btn btn-primary">Añadir al Pedido</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bebidas -->
+            <div class="tab-pane fade" id="bebidas" role="tabpanel" aria-labelledby="bebidas-tab">
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='cocacola.jfif') }}" alt="Gaseosa Coca Cola">
+                    <div class="info">
+                        <h5>Gaseosa Coca Cola - $3.000</h5>
+                        <p>Refrescante Coca Cola servida fría.</p>
+                        <p>Calorías: 140</p>
+                        <button class="btn btn-primary">Añadir al Pedido</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='limonada.jfif') }}" alt="Limonada de Coco">
+                    <div class="info">
+                        <h5>Limonada de Coco - $4.000</h5>
+                        <p>Deliciosa limonada de coco, una bebida refrescante y tropical.</p>
+                        <p>Calorías: 180</p>
+                        <button class="btn btn-primary">Añadir al Pedido</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='batido.jfif') }}" alt="Batido de Fresa">
+                    <div class="info">
+                        <h5>Batido de Fresa - $5.000</h5>
+                        <p>Exquisito batido de fresa con leche.</p>
+                        <p>Calorías: 220</p>
+                        <button class="btn btn-primary">Añadir al Pedido</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Postres -->
+            <div class="tab-pane fade" id="postres" role="tabpanel" aria-labelledby="postres-tab">
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='helado.jfif') }}" alt="Helado de Vainilla">
+                    <div class="info">
+                        <h5>Helado de Vainilla - $6.000</h5>
+                        <p>Delicioso helado de vainilla con salsa de chocolate.</p>
+                        <p>Calorías: 250</p>
+                        <button class="btn btn-primary">Añadir al Pedido</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='torta.jfif') }}" alt="Pastel de Chocolate">
+                    <div class="info">
+                        <h5>Pastel de Chocolate - $8.000</h5>
+                        <p>Pastel de chocolate con relleno de crema y cubierta de ganache.</p>
+                        <p>Calorías: 450</p>
+                        <button class="btn btn-primary">Añadir al Pedido</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='torta_fresa.jfif') }}" alt="Torta de Fresa">
+                    <div class="info">
+                        <h5>Torta de Fresa - $7.000</h5>
+                        <p>Esponjosa torta de fresa con capas de crema batida y fresas frescas.</p>
+                        <p>Calorías: 400</p>
+                        <button class="btn btn-primary">Añadir al Pedido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 Las Delicias de Pipe | Todos los derechos reservados</p>
+        <div id="contacto">
+            <p>Contacto: 3208678103 | Domicilios: 31284999922</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+

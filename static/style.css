@@ -1,0 +1,13 @@
+/* static/styles.css */
+
+body {
+    padding-top: 4.5rem;
+    background-color: #f8f9fa; /* Color de fondo para la página */
+}
+
+.footer {
+    bottom: 0;
+    width: 100%;
+}
+
+

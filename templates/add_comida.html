@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Añadir Comida</h2>
+<form method="POST" action="{{ url_for('main.add_comida') }}">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre">
+    <br>
+    <label for="precio">Precio:</label>
+    <input type="text" id="precio" name="precio">
+    <br>
+    <input type="submit" value="Añadir">
+</form>
+{% endblock %}

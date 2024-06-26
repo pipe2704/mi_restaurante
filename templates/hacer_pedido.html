@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacer Pedido</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            padding-top: 4.5rem;
+            background-color: #f8f9fa; /* Color de fondo para la página */
+        }
+        footer {
+            background-color: #343a40; /* Color de fondo del footer */
+            color: #ffffff; /* Color del texto en el footer */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .item-image {
+            max-width: 100px;
+            max-height: 100px;
+        }
+        .resumen-pedidos {
+            position: fixed;
+            top: 70px;
+            right: 10px;
+            width: 300px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="{{ url_for('static', filename='comida.jfif') }}" alt="Las Delicias de Pipe" style="max-height: 50px;">
+                    Las Delicias de Pipe
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/menu">Menú</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/hacer_pedido">Hacer Pedido</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 class="mt-5">Hacer Pedido</h1>
+        <form id="pedidoForm">
+            <div class="form-group">
+                <label for="clienteNombre">Nombre del Cliente</label>
+                <input type="text" class="form-control" id="clienteNombre" placeholder="Nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="clienteTelefono">Teléfono</label>
+                <input type="text" class="form-control" id="clienteTelefono" placeholder="Teléfono" required>
+            </div>
+            <div class="form-group">
+                <label for="mesaNumero">Número de Mesa</label>
+                <input type="text" class="form-control" id="mesaNumero" placeholder="Número de Mesa" required>
+            </div>
+            
+            <h3>Menú</h3>
+            <div class="form-group">
+                <label for="entradas">Entradas</label>
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="entradas">
+                        <option value="Alitas de Pollo - $10.00">Alitas de Pollo - $10.00</option>
+                        <option value="Nuggets de Pollo - $8.00">Nuggets de Pollo - $8.00</option>
+                        <option value="Papas Fritas - $5.00">Papas Fritas - $5.00</option>
+                    </select>
+                    <div class="input-group-append">
+                        <input type="number" class="form-control" id="cantidadEntradas" placeholder="Cantidad" min="1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="platosPrincipales">Platos Principales</label>
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="platosPrincipales">
+                        <option value="Hamburguesa Clásica - $12.00">Hamburguesa Clásica - $12.00</option>
+                        <option value="Perro Caliente Especial - $10.00">Perro Caliente Especial - $10.00</option>
+                        <option value="Pizza Personal - $15.00">Pizza Personal - $15.00</option>
+                    </select>
+                    <div class="input-group-append">
+                        <input type="number" class="form-control" id="cantidadPlatosPrincipales" placeholder="Cantidad" min="1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="bebidas">Bebidas</label>
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="bebidas">
+                        <option value="Gaseosa Coca Cola - $3.00">Gaseosa Coca Cola - $3.00</option>
+                        <option value="Agua Natural - $1.50">Agua Natural - $1.50</option>
+                        <option value="Jugo de Naranja - $2.50">Jugo de Naranja - $2.50</option>
+                    </select>
+                    <div class="input-group-append">
+                        <input type="number" class="form-control" id="cantidadBebidas" placeholder="Cantidad" min="1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="postres">Postres</label>
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="postres">
+                        <option value="Helado de Vainilla - $4.00">Helado de Vainilla - $4.00</option>
+                        <option value="Pastel de Chocolate - $5.00">Pastel de Chocolate - $5.00</option>
+                        <option value="Churros con Chocolate - $3.50">Churros con Chocolate - $3.50</option>
+                    </select>
+                    <div class="input-group-append">
+                        <input type="number" class="form-control" id="cantidadPostres" placeholder="Cantidad" min="1">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Realizar Pedido</button>
+            <button type="button" class="btn btn-secondary" id="nuevoPedidoBtn">Nuevo Pedido</button>
+        </form>
+        
+        <h3 class="mt-5">Resumen del Pedido</h3>
+        <ul id="resumenPedido" class="list-group">
+            <!-- Resumen del pedido se mostrará aquí -->
+        </ul>
+        <p class="mt-3">Total: $<span id="totalPedido">0.00</span></p>
+
+        <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">Volver a Inicio</a>
+    </main>
+
+    <div class="resumen-pedidos">
+        <h5>Resumen de Todos los Pedidos</h5>
+        <ul id="todosLosPedidos" class="list-group">
+            <!-- Resumen de todos los pedidos se mostrará aquí -->
+        </ul>
+        <button id="eliminarTodosPedidos" class="btn btn-danger mt-3">Eliminar Todos los Pedidos</button>
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <span class="text-muted">Las Delicias de Pipe &copy; 2024</span>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.com/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('pedidoForm');
+            const resumenPedido = document.getElementById('resumenPedido');
+            const totalPedido = document.getElementById('totalPedido');
+            const todosLosPedidos = document.getElementById('todosLosPedidos');
+            const eliminarTodosPedidos = document.getElementById('eliminarTodosPedidos');
+            const nuevoPedidoBtn = document.getElementById('nuevoPedidoBtn');
+
+            let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                // Obtener valores del formulario
+                const clienteNombre = document.getElementById('clienteNombre').value;
+                const clienteTelefono = document.getElementById('clienteTelefono').value;
+                const mesaNumero = document.getElementById('mesaNumero').value;
+                const entradas = document.getElementById('entradas').value;
+                const cantidadEntradas = parseInt(document.getElementById('cantidadEntradas').value) || 0;
+                const platosPrincipales = document.getElementById('platosPrincipales').value;
+                const cantidadPlatosPrincipales = parseInt(document.getElementById('cantidadPlatosPrincipales').value) || 0;
+                const bebidas = document.getElementById('bebidas').value;
+                const cantidadBebidas = parseInt(document.getElementById('cantidadBebidas').value) || 0;
+                const postres = document.getElementById('postres').value;
+                const cantidadPostres = parseInt(document.getElementById('cantidadPostres').value) || 0;
+
+                // Calcular precios
+                const precioEntradas = parseFloat(entradas.split('$')[1]);
+                const precioPlatosPrincipales = parseFloat(platosPrincipales.split('$')[1]);
+                const precioBebidas = parseFloat(bebidas.split('$')[1]);
+                const precioPostres = parseFloat(postres.split('$')[1]);
+
+                // Calcular total del pedido
+                let total = (precioEntradas * cantidadEntradas) + (precioPlatosPrincipales * cantidadPlatosPrincipales) + (precioBebidas * cantidadBebidas) + (precioPostres * cantidadPostres);
+
+                // Crear resumen del pedido
+                let resumenHtml = `<li class="list-group-item"><strong>Cliente:</strong> ${clienteNombre} <strong>Mesa:</strong> ${mesaNumero}</li>`;
+                if (cantidadEntradas > 0) resumenHtml += `<li class="list-group-item">${cantidadEntradas}x ${entradas}</li>`;
+                if (cantidadPlatosPrincipales > 0) resumenHtml += `<li class="list-group-item">${cantidadPlatosPrincipales}x ${platosPrincipales}</li>`;
+                if (cantidadBebidas > 0) resumenHtml += `<li class="list-group-item">${cantidadBebidas}x ${bebidas}</li>`;
+                if (cantidadPostres > 0) resumenHtml += `<li class="list-group-item">${cantidadPostres}x ${postres}</li>`;
+
+                resumenPedido.innerHTML = resumenHtml;
+                totalPedido.textContent = total.toFixed(2);
+
+                // Almacenar el pedido en la lista de pedidos
+                const pedido = {
+                    clienteNombre,
+                    mesaNumero,
+                    resumenHtml,
+                    total: total.toFixed(2)
+                };
+                pedidos.push(pedido);
+                localStorage.setItem('pedidos', JSON.stringify(pedidos));
+
+                // Actualizar el resumen de todos los pedidos
+                actualizarResumenPedidos();
+            });
+
+            nuevoPedidoBtn.addEventListener('click', () => {
+                form.reset();
+                resumenPedido.innerHTML = '';
+                totalPedido.textContent = '0.00';
+            });
+
+            eliminarTodosPedidos.addEventListener('click', () => {
+                pedidos = [];
+                localStorage.setItem('pedidos', JSON.stringify(pedidos));
+                actualizarResumenPedidos();
+            });
+
+            function actualizarResumenPedidos() {
+                todosLosPedidos.innerHTML = '';
+                pedidos.forEach((pedido, index) => {
+                    const pedidoHtml = `
+                        <li class="list-group-item">
+                            <strong>Pedido ${index + 1}</strong><br>
+                            ${pedido.resumenHtml}
+                            <li class="list-group-item"><strong>Total:</strong> $${pedido.total}</li>
+                            <button class="btn btn-danger btn-sm mt-2" onclick="eliminarPedido(${index})">Eliminar</button>
+                        </li>
+                    `;
+                    todosLosPedidos.innerHTML += pedidoHtml;
+                });
+            }
+
+            window.eliminarPedido = function(index) {
+                pedidos.splice(index, 1);
+                localStorage.setItem('pedidos', JSON.stringify(pedidos));
+                actualizarResumenPedidos();
+            };
+
+            // Inicializar el resumen de pedidos
+            actualizarResumenPedidos();
+        });
+    </script>
+</body>
+</html>
+
